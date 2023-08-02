@@ -1,18 +1,47 @@
-.font-family-nunito { font-family: nunito; }
-.text-color { color: #490057; }
-.text-color-light { color: #a303a0; }
-    .bg-sidebar { background: #490057; }
-.bg-light{	--tw-bg-opacity: 1; background-color:  rgba(163, 3, 160, var(--tw-bg-opacity)); }
-    .active-nav-link { background: linear-gradient(to right, rgba(251, 176, 59, 0.25) 0%, rgba(255,0,0,0) 25%); 
-  color: #fbb03b; }
-    .nav-item:hover { background: linear-gradient(to right, rgba(251, 176, 59, 0.25) 0%, rgba(255,0,0,0) 25%); 
-  color: #fbb03b; }
-    .account-link:hover { background: #3d68ff; }
-.border-light { border-color: #a303a0; }
+.font-family-nunito {
+  font-family: nunito;
+}
+
+.text-color {
+  color: #490057;
+}
+
+.text-color-light {
+  color: #a303a0;
+}
+
+.bg-sidebar {
+  background: #490057;
+}
+
+.bg-light {
+  --tw-bg-opacity: 1;
+  background-color: rgba(163, 3, 160, var(--tw-bg-opacity));
+}
+
+.active-nav-link {
+  background: linear-gradient(to right, rgba(251, 176, 59, 0.25) 0%, rgba(255, 0, 0, 0) 25%);
+  color: #fbb03b;
+}
+
+.nav-item:hover {
+  background: linear-gradient(to right, rgba(251, 176, 59, 0.25) 0%, rgba(255, 0, 0, 0) 25%);
+  color: #fbb03b;
+}
+
+.account-link:hover {
+  background: #3d68ff;
+}
+
+.border-light {
+  border-color: #a303a0;
+}
+
 .border-line:after {
   content: '';
   display: block;
   width: 18px;
   border: 2px solid #fbb038;
-  margin-bottom: 2px; 
+  margin-bottom: 2px;
 }
+

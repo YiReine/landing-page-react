@@ -6,14 +6,13 @@ export default function calendarHandler() {
     // Final selected from user (initialing)
     var chosenDate = new Date(inputBox.value)
 
-
     // Current selected on calendar
     var currentSelect = new Date(chosenDate.getTime())
 
     const inputBirthday = document.querySelector(".form__box.birthday")
     inputBirthday.querySelector("span").innerHTML = dateString(chosenDate)
 
-    const calendar = document.querySelector(".form__input .calendar")
+    const calendar = document.querySelector(".calendar")
 
     inputBirthday.querySelector(".form__box.birthday svg").onclick = (e) => {
         e.stopPropagation()
