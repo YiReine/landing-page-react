@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROFILE PAGE - Owner's View</title>
+    <meta name="description" content="">
+	<link rel="icon" href="img/logo.jpg" type="image/icon type">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+        .font-family-nunito { font-family: nunito; }
+		.text-color { color: #490057; }
+		.text-color-light { color: #a303a0; }
+        .bg-sidebar { background: #490057; }
+		.bg-light{ background-color: #a303a0; }
+        .active-nav-link { background: linear-gradient(to right, rgba(251, 176, 59, 0.25) 0%, rgba(255,0,0,0) 25%); 
+			color: #fbb03b; }
+        .nav-item:hover { background: linear-gradient(to right, rgba(251, 176, 59, 0.25) 0%, rgba(255,0,0,0) 25%); 
+			color: #fbb03b; }
+        .account-link:hover { background: #3d68ff; }
+		.border-light { border-color: #a303a0; }
+		.border-line:after {
+			content: '';
+			display: block;
+			width: 18px;
+			border: 2px solid #fbb038;
+			margin-bottom: 2px; 
+		}
+    </style>
+	<style>
+		 .form__input-group {
+		width: 100%;
+		display: flex;
+		gap: 40px;
+		margin-bottom: 24px;
+		}
+		 .form__input-group .form__input {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+		}
+		  .form__input-group .form__input .form__box {
+			margin-top: 12px;
+			width: 100%;
+			padding: 16px 20px;
+			font-size: 1.6rem;
+			font-weight: 400;
+			color: #515151;
+			border-radius: 8px;
+			border: 1px solid #515151;
+			}
+			  .form__input-group .form__input .form__box.birthday {
+			max-width: 312px;
+			position: relative;
+			}
+			  .form__input-group .form__input .form__box.birthday svg {
+			width: 40px;
+			height: 40px;
+			display: block;
+			position: absolute;
+			right: 15px;
+			bottom: 50%;
+			transform: translateY(50%);
+			padding: 10px 11px;
+			cursor: pointer;
+			overflow: visible;
+			}
+			  .form__input-group .form__input .form__box.birthday svg:active,
+			  .form__input-group .form__input .form__box.birthday svg:hover {
+			background-color: #d5d5d5;
+			border-radius: 50%;
+			}
+			  .form__input-group .form__input .form__box.birthday input::-webkit-inner-spin-button,
+			  .form__input-group .form__input .form__box.birthday input::-webkit-calendar-picker-indicator {
+			display: none;
+			-webkit-appearance: none;
+			}
+			  .form__input-group .form__input .form__box.birthday input {
+			font-size: 1.6rem;
+			font-weight: 400;
+			color: #515151;
+			border: none;
+			max-width: 86px;
+			}
+			@media screen and (max-width: 768px) {
+			  .form {
+				padding: 32px 60px;
+				gap: 20px;
+			}
+			  .form .form__action {
+				order: 2;
+			}
+			}
+			  .form .calendar {
+			width: 360px;
+			position: absolute;
+			top: 100%;
+			z-index: 999;
+			}
+			  .form .calendar__format {
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: #49454f;
+			margin: 4px 16px 8px;
+			}
+			  .form .calendar__wrapper {
+			background-color: #ece6f0;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			font-family: "Roboto", sans-serif;
+			}
+			  .form .calendar header {
+			display: flex;
+			justify-content: space-between;
+			padding: 12px 4px;
+			}
+			  .form .calendar .select-group {
+			display: flex;
+			align-items: center;
+			z-index: 999;
+			}
+			  .form .calendar .select-group .wrapper.active .select i {
+			transform: rotateZ(180deg);
+			}
+			  .form .calendar .select-group > i {
+			padding: 14px 16px;
+			color: #49454f;
+			}
+			  .form .calendar .select-group .select {
+			padding: 10px 8px;
+			color: #49454f;
+			font-size: 1.4rem;
+			font-weight: 500;
+			position: relative;
+			display: flex;
+			align-items: center;
+			}
+			  .form .calendar .select-group .select i {
+			font-size: 1rem;
+			color: #49454f;
+			margin-left: 8px;
+			padding: 7px 5px;
+			transform: rotateZ(0deg);
+			transition: all ease 0.2s;
+			}
+			  .form .calendar .select-group .drop-list {
+			background-color: #d5d5d5;
+			border-radius: 8px;
+			box-shadow: 0 0 5px 0.5px #ededed;
+			overflow-y: scroll;
+			position: absolute;
+			width: 200px;
+			height: 300px;
+			scroll-behavior: smooth;
+			}
+			  .form .calendar .select-group .drop-list .option {
+			padding: 8px;
+			background-color: #ffffff;
+			font-size: 14px;
+			font-weight: 500;
+			}
+			  .form .calendar .select-group .drop-list .option:hover {
+			background-color: #ededed;
+			}
+			  .form .calendar .select-group .drop-list .option--selected {
+			background-color: #a303a0;
+			color: #ffffff;
+			}
+			  .form .calendar .select-group .drop-list .option--selected:hover {
+			background-color: #490057;
+			color: #ffffff;
+			}
+			  .form .calendar .select-group .drop-list--hide {
+			display: none;
+			}
+			  .form .calendar__space {
+			padding: 0 12px 4px;
+			}
+			  .form .calendar__space ul {
+			display: flex;
+			list-style-type: none;
+			flex-wrap: wrap;
+			color: #1d1b20;
+			font-size: 1.6rem;
+			font-weight: 400;
+			}
+			  .form .calendar__space li {
+			width: 14.2857142857%;
+			text-align: center;
+			padding: 13px 10px;
+			}
+			  .form .calendar__space .days li {
+			cursor: pointer;
+			position: relative;
+			z-index: 1;
+			}
+			  .form .calendar__space .days li::before {
+			content: "";
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			top: 50%;
+			left: 50%;
+			z-index: -1;
+			transform: translate(-50%, -50%);
+			transition: all ease 0.1s;
+			}
+			  .form .calendar__space .days li:hover::before {
+			background-color: #d5d5d5;
+			}
+			  .form .calendar__space .days li.inactive {
+			color: #49454f;
+			}
+			  .form .calendar__space .days li.active {
+			color: #ffffff;
+			}
+			  .form .calendar__space .days li.active::before {
+			background-color: #a303a0;
+			}
+			  .form .calendar__action {
+			padding: 8px;
+			display: flex;
+			justify-content: flex-end;
+			gap: 8px;
+			}
+			  .form .calendar__cancel,   .form .calendar__ok {
+			padding: 10px 12px;
+			color: #9b9b9b;
+			font-weight: 500;
+			font-size: 1.4rem;
+			cursor: pointer;
+			}
+			  .form .calendar__ok {
+			color: #a303a0;
+			}
+			  .form .calendar--hide {
+			display: none;
+			}
+	</style>
+</head>
+<body class="bg-gray-100 font-family-nunito flex">
+
+    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+        <div class="p-6">
+            <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
+				<img src="img/Logo and company.png" alt="Logo"> 
+			</a>
+        </div>
+        <nav class="text-white text-base font-semibold pt-3">
+            <a href="index.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-home mr-3"></i>
+                Home
+            </a>
+            <a href="profile_page_owner.html" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+                <i class="fas fa-user mr-3"></i>
+                Profile
+            </a>
+            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-comment-alt mr-3"></i>
+                Messages
+            </a>
+            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-list-alt mr-3"></i>
+                Purchases
+            </a>
+            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-gift mr-3"></i>
+                Returns
+            </a>
+            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+               <i class="fas fa-images mr-3"></i>
+                Gallery
+            </a>
+            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+               <i class="fas fa-chart-bar mr-3"></i>
+                Analytics
+            </a>
+            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+               <i class="fas fa-cog mr-3"></i>
+                Settings
+            </a>
+        </nav>
+    </aside>
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        <!-- Desktop Header -->
+        <header class="w-full items-center py-2 px-6 hidden sm:flex">
+            <div class="w-2/3 md:w-3/4 lg:w-5/6">
+                <form>   
+                    <label for="default-search" class="mb-2 text-sm font-medium text-color sr-only ">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <iconify-icon icon="dashicons:search" class="text-color" width="24"></iconify-icon>
+                        </div>
+                        <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-color  rounded-lg bg-white focus:ring-purple-800 focus:border-purple-800 placeholder-purple-900" placeholder="Search" required>
+    
+                    </div>
+                </form>
+            </div>
+            <div class="relative w-1/3 md:w-1/4 lg:w-1/6 flex justify-end right-2">
+                <div class="text-color mr-3">
+					<span class="text-sm"><b>Yennhi</b></span><br>
+					<a href="#" class="text-xs">Log out</a>
+				</div>
+				<button class="realtive z-10 w-12 h-12 rounded-full overflow-hidden  hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+                    <img src="img/avatar(1).png" alt="avatar">
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Header & Nav -->
+        <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
+					<img src="img/Logo and company.png" alt="Logo"> 
+				</a>
+                <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
+                    <i x-show="!isOpen" class="fas fa-bars"></i>
+                    <i x-show="isOpen" class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Dropdown Nav -->
+            <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
+				<div class="w-full">
+					<form>   
+						<label for="search" class="mb-2 text-sm font-medium text-color sr-only ">Search</label>
+						<div class="relative">
+							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+								<iconify-icon icon="dashicons:search" class="text-color" width="24"></iconify-icon>
+							</div>
+							<input type="search" id="search" class="block w-full p-4 pl-10 text-sm text-color  rounded-lg bg-white focus:ring-purple-800 focus:border-purple-800 placeholder-purple-900" placeholder="Search" required >
+						</div>
+					</form>
+				</div>
+                <a href="index.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-home mr-3"></i>
+                	Home
+                </a>
+                <a href="#" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-user mr-3"></i>
+               		Profile
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-comment-alt mr-3"></i>
+                	Messages
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-list-alt mr-3"></i>
+                	Purchases
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-gift mr-3"></i>
+                	Returns
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-images mr-3"></i>
+                	Gallery
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-chart-bar mr-3"></i>
+                	Analytics
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-cog mr-3"></i>
+                	Settings
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-user mr-3"></i>
+                    My Account
+                </a>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-sign-out-alt mr-3"></i>
+                    Log Out
+                </a>
+                
+            </nav>
+        </header>
+    
+        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+            <main class="w-full flex-grow px-6 py-2">
+				<div class="mx-auto bg-white rounded-xl">
+					<div class="w-full mx-0">
+						<div class="rounded relative h-64 flex">
+							<img class="object-fill w-full" src="img/cover.png" alt="cover"/>
+							
+							<div class="flex items-center px-6 py-2 rounded absolute right-0 bottom-0 mr-6 mb-4 cursor-pointer">
+								
+								<button class="bg-white text-color-light w-44 h-10 rounded-lg  hover:shadow-xl hover:bg-gray-300 flex items-center justify-center hidden lg:block">
+									Edit Cover Photo
+								</button>
+
+								<button class="bg-white w-14 h-14 p-2 mr-3 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center mt-6 lg:hidden">
+									<iconify-icon icon="bx:edit" class="text-color-light" width="30"></iconify-icon>
+								</button>
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="flex rounded-lg bg-white mt-6 w-full h-full flex flex-row">
+					<div class="w-1/3 flex flex-col items-center border-light border-r my-10">
+						<div class="w-36 h-36 rounded-full bg-cover bg-center bg-no-repeat relative shadow flex items-center justify-center">
+							<img src="img/avatar(1).png" id="preview_ava" alt="avatar main" class="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0" />
+
+						</div>
+						<div class="flex flex-col text-color-light place-items-center pt-6">
+							<span class="text-4xl"><b>Yen Nhi</b></span>
+							<span class="text-xl">Developer</span>
+						</div>
+						<div class="px-6 flex justify-center ">
+							<form>								  
+								<input type="file" id="upload" onchange="loadFile(event)" class="hidden"/>
+
+								<label class="bg-white text-color-light border border-light w-44 h-10 rounded-lg  hover:shadow-xl hover:bg-gray-300 flex items-center justify-center my-6 cursor-pointer" for="upload">Upload photo</label>
+							</form>
+						</div>
+					</div>
+					<div class="flex mt-10 w-full max-w-2xl mx-6">
+						<form class="form w-full max-w-3xl">
+							
+							<div class="px-6 pb-6 flex justify-end mr-6 w-full">
+								<button class="bg-white text-color-light border-light border w-32 h-10 rounded-lg  hover:shadow-xl hover:bg-gray-300 flex items-center justify-center mt-6 mr-6">
+									Cancel
+								</button>
+								<button class="w-32 h-10 rounded-lg bg-gray-300 text-white flex items-center justify-center mt-6" disabled>
+									Save
+								</button>
+							</div>
+							<div class="flex flex-wrap mx-3 mb-6 w-full">
+								<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+								  <label class="block tracking-wide text-gray-500 text-sm mb-3">
+									First Name
+								  </label>
+								  <input class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"  type="text" name="firstname" value="Deo">
+								  <p class="text-red-500 text-xs italic hidden">Please fill out this field.</p>
+								</div>
+								<div class="w-full md:w-1/2 px-3">
+								  <label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Last Name
+								  </label>
+								  <input class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"  type="text" name="lastname" value="Charles">
+								</div>
+							  </div>
+							<div class="flex w-full flex-wrap mx-3 mb-6">
+								<div class="w-full px-3">
+								  <label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Title
+								  </label>
+								  <input class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"  type="text" value="UI/UX Designer">
+								</div>
+							</div>
+							
+							<div class="flex w-full flex-col mx-3 mb-6 px-3">
+								<label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Gender
+								</label>
+								<div class="flex flex-row pb-2 space-x-4">
+								  <label>
+									<input
+									  type="radio"
+									  name="radio"
+									  value="1"
+									  class="mr-2 text-color-light border-2 border-gray-300 focus:border-light focus:ring-purple"
+									/>
+									Male
+								  </label>
+								  <label>
+									<input
+									  type="radio"
+									  name="radio"
+									  value="2"
+									  class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
+									/>
+									Female
+								  </label>
+								  <label>
+									<input
+									  type="radio"
+									  name="radio"
+									  value="2"
+									  class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
+									/>
+									Order
+								  </label>
+								</div>
+								<span class="text-sm text-red-600 hidden" id="errorGender">Option has to be selected</span>
+							</div>
+							<div class="flex w-full flex-wrap mx-3 mb-6 px-3">
+								<label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Date
+								</label>
+								<input
+								type="text"
+								name="date"
+								placeholder=" "
+								value="06/26/1980"
+								onclick="this.setAttribute('type', 'date');"
+								class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"
+								/>
+								<span class="text-xs text-gray-300">MM/DD/YY</span>
+							  <span class="text-sm text-red-600 hidden" id="errorDate">Date is required</span>
+							</div>
+							
+							<div class="form__input-group">
+								<div class="form__input" id="input-calendar">
+								  <label for="birthday">Birthday</label>
+								  <div class="form__box birthday" name="birthday">
+									<input
+									  hidden
+									  type="date"
+									  name="birthday"
+									  id="birthday"
+									  rules="required"
+									  value="1980-06-26"
+									/>
+									<span></span>
+									<svg
+									  class="active"
+									  width="18"
+									  height="20"
+									  viewBox="0 0 18 20"
+									  fill="none"
+									  xmlns="http://www.w3.org/2000/svg"
+									>
+									  <path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M16 2H15V0H13V2H5V0H3V2H2C0.89 2 0 2.9 0 4V18C0 19.1 0.89 20 2 20H16C17.1 20 18 19.1 18 18V4C18 2.9 17.1 2 16 2ZM16 18H2V7H16V18ZM3.5 11C3.5 9.62 4.62 8.5 6 8.5C7.38 8.5 8.5 9.62 8.5 11C8.5 12.38 7.38 13.5 6 13.5C4.62 13.5 3.5 12.38 3.5 11Z"
+										fill="#A303A0"
+									  />
+									</svg>
+								  </div>
+								  <div class="calendar calendar--hide">
+									<p class="calendar__format">MM/DD/YYYY</p>
+									<div class="calendar__wrapper">
+									  <header>
+										<div class="select-group month">
+										  <i
+											class="fa-sharp fa-solid fa-angle-left setting-month"
+										  ></i>
+										  <div class="wrapper">
+											<div class="select selected-item">
+											  <span>Select item</span>
+											  <i class="fa-solid fa-caret-down toggle"></i>
+											</div>
+											<div class="drop-list drop-list--hide">
+											  <div class="option">Item1</div>
+											  <div class="option option--selected">Item2</div>
+											  <div class="option">Item3</div>
+											</div>
+										  </div>
+										  <i
+											class="fa-sharp fa-solid fa-angle-right setting-month"
+										  ></i>
+										</div>
+										<div class="select-group year">
+										  <i
+											class="fa-sharp fa-solid fa-angle-left setting-year"
+										  ></i>
+										  <div class="wrapper">
+											<div class="select selected-item">
+											  <span>Select item</span>
+											  <i class="fa-solid fa-caret-down toggle"></i>
+											</div>
+											<div class="drop-list drop-list--hide">
+											  <div class="option">Item1</div>
+											  <div class="option option--selected">Item2</div>
+											  <div class="option">Item3</div>
+											</div>
+										  </div>
+										  <i
+											class="fa-sharp fa-solid fa-angle-right setting-year"
+										  ></i>
+										</div>
+									  </header>
+									  <div class="calendar__space">
+										<ul class="weeks">
+										  <li>S</li>
+										  <li>M</li>
+										  <li>T</li>
+										  <li>W</li>
+										  <li>T</li>
+										  <li>F</li>
+										  <li>S</li>
+										</ul>
+										<ul class="days"></ul>
+									  </div>
+									  <div class="calendar__action">
+										<span class="calendar__cancel">Cancel</span>
+										<span class="calendar__ok">OK</span>
+									  </div>
+									</div>
+								  </div>
+								  <span class="input__error"></span>
+								</div>
+							</div>
+
+							
+							<div class="flex w-full flex-wrap mx-3 mb-6">
+								<div class="w-full px-3">
+								  <label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Address
+								  </label>
+								  <input class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"  type="text" value="2239 Hog Camp Road, Schaumburg">
+								</div>
+							</div>
+							<div class="flex w-full flex-wrap mx-3 mb-6">
+								<div class="w-full px-3">
+								  <label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Email
+								  </label>
+								  <input class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"  type="text" value="charles5182@ummoh.com">
+								</div>
+							</div>
+							<div class="flex w-full flex-wrap mx-3 mb-6">
+								<div class="w-full px-3">
+								  <label class="block tracking-wide text-gray-500 text-sm mb-3">
+									Phone Number
+								  </label>
+								  <input class="w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:border-2 bg-white border-gray-500"  type="text" value="33757005467">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+            </main>
+		</div>
+    </div>
+	<!--Tailwind Element-->
+	<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+	<script>		
+		
+        var loadFile = function(event) {
+            
+            var input = event.target;
+            var file = input.files[0];
+            var type = file.type;
+
+           var output = document.getElementById('preview_ava');
+
+
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+	</script>
+<script>
+
+const inputBox = document.querySelector("form input[name='birthday']")
+
+
+// Final selected from user (initialing)
+var chosenDate = new Date(inputBox.value)
+
+
+// Current selected on calendar
+var currentSelect = new Date(chosenDate.getTime())
+
+const inputBirthday = document.querySelector(".form__box.birthday")
+inputBirthday.querySelector("span").innerHTML = dateString(chosenDate)
+
+const calendar = document.querySelector(".form__input .calendar")
+
+inputBirthday.querySelector(".form__box.birthday svg").onclick = (e) => {
+    e.stopPropagation()
+    inputBirthday.querySelector(".form__box.birthday svg").classList.toggle("active")
+    currentSelect = new Date(chosenDate.getTime())
+    calendar.classList.toggle("calendar--hide")
+    renderCalendar()
+}
+
+inputBirthday.onclick = () => {
+    cancelBtn.onclick()
+}
+
+// For Month select box
+const selectGroupM = document.querySelector(".select-group.month")
+const selectM = selectGroupM.querySelector(".wrapper")
+const dropListM = selectGroupM.querySelector(".drop-list")
+const [prevM, nextM] = selectGroupM.querySelectorAll(".setting-month")
+
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+selectM.onclick = () => {
+    dropListM.classList.toggle("drop-list--hide")
+    selectM.classList.toggle("active")
+    var selectedItem = dropListM.querySelector(".option--selected")
+    dropListM.scrollTop = selectedItem.offsetTop
+}
+
+dropListM.onclick = (e) => {
+    const newMonth = e.target.dataset.value
+    currentSelect.setMonth(newMonth)
+    renderCalendar()
+}
+
+prevM.onclick = () => {
+    currentSelect.setMonth(currentSelect.getMonth() - 1)
+    renderCalendar()
+}
+
+nextM.onclick = () => {
+    currentSelect.setMonth(currentSelect.getMonth() + 1)
+    renderCalendar()
+}
+
+function renderMonth() {
+    const monthOptions = months.map((m, i) => {
+        if (currentSelect.getMonth() === i) {
+            return `<div data-value="${i}" class="option option--selected">${m}</div>`
+        }
+        else {
+            return `<div data-value="${i}" class="option">${m}</div>`
+        }
+    }).join("")
+    dropListM.innerHTML = monthOptions
+    selectM.querySelector('span').innerHTML = months[currentSelect.getMonth()]
+}
+
+// For Year select box
+const selectGroupY = document.querySelector(".select-group.year")
+const selectY = selectGroupY.querySelector(".wrapper")
+const dropListY = selectGroupY.querySelector(".drop-list")
+const [prevY, nextY] = selectGroupY.querySelectorAll(".setting-year")
+
+selectY.onclick = () => {
+    dropListY.classList.toggle("drop-list--hide")
+    selectY.classList.toggle("active")
+    var selectedItem = dropListY.querySelector(".option--selected")
+    dropListY.scrollTop = selectedItem.offsetTop
+}
+
+dropListY.onclick = (e) => {
+    const newYear = e.target.dataset.value
+    currentSelect.setFullYear(newYear)
+    renderCalendar()
+}
+
+prevY.onclick = () => {
+    if (currentSelect.getFullYear() - 1 < 1900) return
+    currentSelect.setFullYear(currentSelect.getFullYear() - 1)
+    renderCalendar()
+}
+
+nextY.onclick = () => {
+    maxY = new Date(Date.now()).getFullYear() + 50
+    if (currentSelect.getFullYear() + 1 > maxY) return
+    currentSelect.setFullYear(currentSelect.getFullYear() + 1)
+    renderCalendar()
+}
+
+
+function renderYear() {
+    const yearOptions = []
+    let currentYear = new Date(Date.now())
+    for (let i = 1900; i <= currentYear.getFullYear() + 50; i++) {
+        if (i === currentSelect.getFullYear()) {
+            yearOptions.push(`<div data-value="${i}" class="option option--selected" >${i}</div>`)
+        }
+        else {
+            yearOptions.push(`<div data-value="${i}" class="option " >${i}</div>`)
+        }
+    }
+    dropListY.innerHTML = yearOptions.join("")
+    selectY.querySelector('span').innerHTML = currentSelect.getFullYear()
+}
+
+// For Date select
+const dropListD = document.querySelector(".calendar .days")
+function renderDate() {
+    let Y = currentSelect.getFullYear()
+    let M = currentSelect.getMonth()
+    const dateOptions = []
+
+    let lastDateOfM = (new Date(Y, M + 1, 0)).getDate()
+    let firstDayOfM = (new Date(Y, M, 1)).getDay()
+    let lastDateOfLastM = (new Date(Y, M, 0)).getDate()
+    let lastDayOfM = (new Date(Y, M, lastDateOfM)).getDay()
+
+
+    for (let i = firstDayOfM; i > 0; i--) {
+        let data = Date.parse(`${Y} ${M} ${lastDateOfLastM - i + 1}`)
+        dateOptions.push(`
+            <li
+                class="inactive"
+                data-value="${data}"
+            >
+            ${lastDateOfLastM - i + 1}
+            </li>`
+        )
+    }
+
+    for (let i = 1; i <= lastDateOfM; i++) {
+        let data = Date.parse(`${Y} ${M + 1} ${i}`)
+        if (i === currentSelect.getDate()) {
+            dateOptions.push(`
+                <li 
+                    class="active"
+                    data-value="${data}"
+                >
+                    ${i}
+                </li>`
+            )
+        }
+        else {
+            dateOptions.push(`
+                <li 
+                    data-value="${data}"
+                >
+                    ${i}
+                </li>`
+            )
+        }
+    }
+
+    for (let i = lastDayOfM; i < 6; i++) {
+        let data = Date.parse(`${Y} ${M + 2} ${i - lastDayOfM + 1}`)
+        dateOptions.push(`
+            <li 
+                class="inactive"
+                data-value="${data}"
+            >
+                ${i - lastDayOfM + 1}
+            </li>`
+        )
+    }
+
+    dropListD.innerHTML = dateOptions.join("")
+
+}
+
+// Change currentDate when click on the date on the calendar
+dropListD.onclick = (e) => {
+    let selected = e.target.closest("li")
+    let selectedDate = new Date(Number(selected.dataset.value))
+    currentSelect = selectedDate
+    renderCalendar()
+}
+
+// Render calendar
+function renderCalendar() {
+    renderMonth()
+    renderYear()
+    renderDate()
+}
+
+
+// Don't save currentDate -> chosenDate
+const cancelBtn = calendar.querySelector(".calendar__cancel")
+cancelBtn.onclick = () => {
+    calendar.classList.add("calendar--hide")
+    inputBirthday.querySelector(".form__box.birthday svg").classList.remove("active")
+}
+
+// Save currentDate -> chosenDate
+const saveBtn = calendar.querySelector(".calendar__ok")
+
+
+saveBtn.onclick = () => {
+    chosenDate = new Date(currentSelect.getTime())
+    inputBox.value = toInputDateFormat(chosenDate)
+    calendar.classList.add("calendar--hide")
+    inputBirthday.querySelector("span").innerHTML = dateString(chosenDate)
+    inputBirthday.querySelector(".form__box.birthday svg").classList.remove("active")
+}
+
+function dateString(chosenDate) {
+    var month = `${chosenDate.getMonth() + 1 <= 9 ? "0" : ""}${chosenDate.getMonth() + 1}`
+    var date = `${chosenDate.getDate() <= 9 ? "0" : ""}${chosenDate.getDate()}`
+    var year = `${chosenDate.getFullYear()}`
+
+    return `${month}/${date}/${year}`
+}
+
+function toInputDateFormat(chosenDate) {
+    var month = `${chosenDate.getMonth() + 1 <= 9 ? "0" : ""}${chosenDate.getMonth() + 1}`
+    var date = `${chosenDate.getDate() <= 9 ? "0" : ""}${chosenDate.getDate()}`
+    var year = `${chosenDate.getFullYear()}`
+
+    return `${year}-${month}-${date}`
+}
+
+function setValue(value) {
+    inputBox.value = value
+    chosenDate = new Date(inputBox.value)
+    currentSelect = new Date(chosenDate.getTime())
+    inputBirthday.querySelector("span").innerHTML = dateString(chosenDate)
+}
+
+export default setValue
+</script>
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+</html>
